@@ -24,7 +24,12 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+        String uuid = request.getParameter("uuid");
+        
+        if(uuid != null){
+            request.setAttribute("uuid", uuid);
+            getServletContext().getRequestDispatcher("/WEB-INF/resetNewPassword.jsp").forward(request, response);
+        }
     }
 
   
@@ -32,13 +37,18 @@ public class ResetPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AccountService as = new AccountService();
+        String uuid = request.getParameter("uuid");
         
-        String url = request.getRequestURL().toString();
-        String path = getServletContext().getRealPath("/WEB-INF");
-        String email = request.getParameter("resetEmail");
+        if(uuid != null){
+            
+        } else {
+            String url = request.getRequestURL().toString();
+            String path = getServletContext().getRealPath("/WEB-INF");
+            String email = request.getParameter("resetEmail");
         
-        as.resetPassword(email, path, url);
+            as.resetPassword(email, path, url);
         
-        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);    
+        }
     }
 }

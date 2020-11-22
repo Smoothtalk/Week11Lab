@@ -42,7 +42,8 @@ public class AccountService {
         
         try{
             User user = userDB.get(email);
-            userDB.setUserUUID(user, uuid);
+            user.setResetPasswordUuid(uuid);
+            userDB.update(user);
             
             String to = email;
             String subject = "Password reset for " + user.getEmail();
@@ -52,10 +53,24 @@ public class AccountService {
             tags.put("firstname", user.getFirstName());
             tags.put("lastname", user.getLastName());
             tags.put("link", link);
+            
+//            GmailService.sendMail(to, subject, template, tags);
             return true;
         } catch (Exception e){
             return false;
         }
-        
+    }
+    
+    public boolean changePassword(String uuid, String password) {
+        UserDB userDB = new UserDB();
+        try {
+            User user = userDB.getByUUID(uuid);
+            user.setPassword(password);
+            user.setResetPasswordUuid(null);
+            userDB.update(user);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }

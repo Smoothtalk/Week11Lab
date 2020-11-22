@@ -13,6 +13,7 @@
             password: <input type="password" name="password"><br>
             <input type="submit" value="Sign in">
         </form>
-            <a href="/reset">Forgot Password</a>
+            <a href="/reset">Forgot Password</a><br>
+            <p>avinash.chandiramani@edu.sait.ca</p>
     </body>
 </html>
