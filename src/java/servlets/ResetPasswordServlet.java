@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.AccountService;
 
 /**
  *
@@ -23,7 +24,6 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getRequestURL().toString();
         getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
     }
 
@@ -31,6 +31,14 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountService as = new AccountService();
+        
+        String url = request.getRequestURL().toString();
+        String path = getServletContext().getRealPath("/WEB-INF");
+        String email = request.getParameter("resetEmail");
+        
+        as.resetPassword(email, path, url);
+        
         getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
     }
 }
