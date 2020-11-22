@@ -19,6 +19,7 @@
             <br>
             <input type="submit" value="submit">
         </form>
+            <a href="login">Login</a>
             <p>avinash.chandiramani@edu.sait.ca</p>
     </body>
 </html>

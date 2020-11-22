@@ -43,7 +43,10 @@ public class ResetPasswordServlet extends HttpServlet {
         
         if(uuid != null){
             String newPassword = request.getParameter("password");
-            as.changePassword(uuid, newPassword);
+            boolean passwordChangeStatus = as.changePassword(uuid, newPassword);
+            String passwordChangeMessage = passwordChangeStatus ? "Successfully changed password" : "Unable to change password";
+            request.setAttribute("message", passwordChangeMessage);
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);    
         } else {
             String url = request.getRequestURL().toString();
             String path = getServletContext().getRealPath("/WEB-INF");

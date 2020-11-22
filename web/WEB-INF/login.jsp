@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <title>My Notes</title>
     </head>
     <body>
@@ -14,6 +15,9 @@
             <input type="submit" value="Sign in">
         </form>
             <a href="/reset">Forgot Password</a><br>
+            <c:if test="${message != null}" >
+                <p>${message}</p>
+            </c:if>
             <p>avinash.chandiramani@edu.sait.ca</p>
     </body>
 </html>
