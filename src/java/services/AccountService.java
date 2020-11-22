@@ -54,7 +54,7 @@ public class AccountService {
             tags.put("lastname", user.getLastName());
             tags.put("link", link);
             
-//            GmailService.sendMail(to, subject, template, tags);
+            GmailService.sendMail(to, subject, template, tags);
             return true;
         } catch (Exception e){
             return false;
