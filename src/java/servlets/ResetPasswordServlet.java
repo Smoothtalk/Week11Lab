@@ -42,7 +42,7 @@ public class ResetPasswordServlet extends HttpServlet {
         String uuid = request.getParameter("uuid");
         
         if(uuid != null){
-            String newPassword = request.getParameter("password");
+            String newPassword = request.getParameter("newPassword");
             boolean passwordChangeStatus = as.changePassword(uuid, newPassword);
             String passwordChangeMessage = passwordChangeStatus ? "Successfully changed password" : "Unable to change password";
             request.setAttribute("message", passwordChangeMessage);

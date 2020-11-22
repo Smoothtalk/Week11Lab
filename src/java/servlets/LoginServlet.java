@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
         
         if (user == null) {
             request.setAttribute("email", email);
+            request.setAttribute("message", "failed to login");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             return;
         }
